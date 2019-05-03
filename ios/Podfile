@@ -7,10 +7,10 @@ target 'bryantcabrera_mobileforming' do
 
   # Pods for bryantcabrera_mobileforming
 
-  target 'bryantcabrera_mobileforming-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+#   target 'bryantcabrera_mobileforming-tvOSTests' do
+#     inherit! :search_paths
+#     # Pods for testing
+#   end
 
   target 'bryantcabrera_mobileformingTests' do
     inherit! :search_paths

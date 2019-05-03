@@ -12,8 +12,13 @@ import {
     TouchableWithoutFeedback,
     ActivityIndicator
 } from 'react-native';
+import startMainTabs from '../MainTabs/startMainTabs';
 
 class AuthScreen extends Component {
+    componentDidMount() {
+        startMainTabs();
+    }
+
     render() {
         return (
             <Text>
