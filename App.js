@@ -8,23 +8,26 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+const client = new ApolloClient({
+    // HttpLink is responsible for fetching GraphQL results from a GraphQL server
+    link: new HttpLink(),
+    // InMemoryCache helps with data store normalization
+    cache: new InMemoryCache()
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      return (
+          <ApolloProvider client={client}>
+            <View style={styles.container}>
+                <Text style={styles.welcome}>Welcome to React Native!</Text>
+                <Text style={styles.instructions}>To get started, edit App.js</Text>
+                <Text style={styles.instructions}>instructions</Text>
+            </View>
+          </ApolloProvider>
     );
   }
 }
