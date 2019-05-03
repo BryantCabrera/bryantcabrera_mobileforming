@@ -23,8 +23,8 @@ export default class App extends Component {
       return (
           <ApolloProvider client={client}>
             <View style={styles.container}>
-                <Text style={styles.welcome}>Welcome to React Native!</Text>
-                <Text style={styles.instructions}>To get started, edit App.js</Text>
+                <Text style={styles.welcome}>Welcome to BryantCabrera_mobileforming</Text>
+                <Text style={styles.instructions}>To get started, please Log In</Text>
                 <Text style={styles.instructions}>instructions</Text>
             </View>
           </ApolloProvider>
