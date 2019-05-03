@@ -20,6 +20,7 @@ class CreateReservationScreen extends Component {
 
     render() {
         return (
+            
             <Text>
                 This is CreateReservation.
             </Text>
