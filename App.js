@@ -1,52 +1,38 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import { Navigation } from "react-native-navigation";
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import AuthScreen from "./src/screens/Auth/Auth";
+import CreateReservationScreen from "./src/screens/CreateReservation/CreateReservation";
+import FindReservationScreen from "./src/screens/FindReservation/FindReservation";
+import ReservationDetailScreen from "./src/screens/ReservationDetail/ReservationDetail";
+import SideDrawer from "./src/screens/SideDrawer/SideDrawer";
 
-const client = new ApolloClient({
-    // HttpLink is responsible for fetching GraphQL results from a GraphQL server
-    link: new HttpLink(),
-    // InMemoryCache helps with data store normalization
-    cache: new InMemoryCache()
-});
+// Registers screens
+Navigation.registerComponent(
+    //this string is a unique identifier of that string, you can choose anything you want (app name.ScreenName)
+    "bryant-mobileforming.AuthScreen",
+    () => AuthScreen
+);
+Navigation.registerComponent(
+    "bryant-mobileforming.CreateReservationScreen",
+    () => CreateReservationScreen
+);
+Navigation.registerComponent(
+    "bryant-mobileforming.FindReservationScreen",
+    () => FindReservationScreen
+);
+Navigation.registerComponent(
+    "bryant-mobileforming.ReservationDetailScreen",
+    () => ReservationDetailScreen
+);
+Navigation.registerComponent(
+    "bryant-mobileforming.SideDrawer",
+    () => SideDrawer
+);
 
-export default class App extends Component {
-  render() {
-      return (
-          <ApolloProvider client={client}>
-            <View style={styles.container}>
-                <Text style={styles.welcome}>Welcome to BryantCabrera_mobileforming</Text>
-                <Text style={styles.instructions}>To get started, please Log In</Text>
-                <Text style={styles.instructions}>instructions</Text>
-            </View>
-          </ApolloProvider>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+// lets us import App.js in other files
+export default () => Navigation.startSingleScreenApp({
+    screen: {
+        screen: "bryant-mobileforming.AuthScreen",
+        title: "Login"
+    }
 });
