@@ -19,7 +19,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  +  [GMSServices provideAPIKey:@"AIzaSyCz8RJTK_5xkM4MgVDoV50PvDd9P-7OU5w"]; // add this line using the api key obtained from Google Console
+  +  [GMSServices provideAPIKey:@"AIzaSyD1TuR3bFSSMUP53wQViSbirk2Y6T5JGfE"]; // add this line using the api key obtained from Google Console
   NSURL *jsCodeLocation;
 #ifdef DEBUG
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
