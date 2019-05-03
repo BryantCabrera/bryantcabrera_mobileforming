@@ -12,9 +12,9 @@ const startTabs = () => {
             //array of all the tabs you use
             tabs: [
                 {
-                    screen: "awesome-places.FindPlaceScreen",
-                    label: "Find Place",
-                    title: "Find Place",
+                    screen: "bryant-mobileforming.FindReservationScreen",
+                    label: "Find Reservation",
+                    title: "Find Reservation",
                     icon: sources[0],
                     navigatorButtons: {
                         leftButtons: [
@@ -27,9 +27,9 @@ const startTabs = () => {
                     }
                 },
                 {
-                    screen: "awesome-places.SharePlaceScreen",
-                    label: "Share Place",
-                    title: "Share Place",
+                    screen: "bryant-mobileforming.CreateReservationScreen",
+                    label: "Create Reservation",
+                    title: "Create Reservation",
                     icon: sources[1],
                     navigatorButtons: {
                         leftButtons: [
@@ -48,7 +48,7 @@ const startTabs = () => {
             },
             drawer: {
                 left: {
-                    screen: "awesome-places.SideDrawer"
+                    screen: "bryant-mobileforming.SideDrawer"
                 }
             },
             //  lets you customize tab colors in Android

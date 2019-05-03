@@ -10,7 +10,13 @@ import { ApolloProvider } from 'react-apollo';
 
 const client = new ApolloClient({
     // HttpLink is responsible for fetching GraphQL results from a GraphQL server
-    link: new HttpLink(),
+    link: new HttpLink({
+        uri: 'https://us1.prisma.sh/public-luckox-377/reservation-graphql-backend/dev',
+        headers: {
+            authorization: 'YOUR_TOKEN' // on production you need to store token
+            //in storage or in redux persist, for demonstration purposes we do this like that
+        }
+    }),
     // InMemoryCache helps with data store normalization
     cache: new InMemoryCache()
 });
@@ -27,7 +33,7 @@ Navigation.events().registerAppLaunchedListener(() => {
     Navigation.setRoot({
         root: {
             component: {
-                name: "navigation.playground.WelcomeScreen"
+                name: "bryant-mobileforming.AuthScreen"
             }
         }
     });
