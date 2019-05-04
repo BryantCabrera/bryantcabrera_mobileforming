@@ -12,6 +12,7 @@ import {
 import MainText from "../../components/UI/MainText/MainText";
 import HeadingText from "../../components/UI/HeadingText/HeadingText";
 import ReservationInput from "../../components/ReservationInput/ReservationInput";
+import DatePicker from 'react-native-datepicker'
 import validate from "../../utility/validation";
 
 class CreateReservationScreen extends Component {
@@ -116,6 +117,26 @@ class CreateReservationScreen extends Component {
         });
     };
 
+    getToday = () => {
+        // gets today's date
+        let today = new Date();
+        const yyyy = today.getFullYear();
+        let mm = today.getMonth() + 1;
+        let dd = today.getDate();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+
+        return today;
+    }
+
     datePickedHandler = image => {
         this.setState(prevState => {
             return {
@@ -139,16 +160,16 @@ class CreateReservationScreen extends Component {
     };
 
     render() {
+        // Button disable logic
         let submitButton = (
             <Button
                 title="Reserve!"
                 onPress={this.reservationCreatedHandler}
                 disabled={
-                    !this.state.controls.name.valid
-                    // ||
-                    // !this.state.controls.hotelName.valid ||
-                    // !this.state.controls.arrivalDate.valid ||
-                    // !this.state.controls.departureDate.valid
+                    !this.state.controls.name.valid ||
+                    !this.state.controls.hotelName.valid ||
+                    !this.state.controls.arrivalDate.valid ||
+                    !this.state.controls.departureDate.valid
                 }
             />
         );
@@ -164,10 +185,37 @@ class CreateReservationScreen extends Component {
                     <MainText>
                         <HeadingText>Book with Us!</HeadingText>
                     </MainText>
+
                     <ReservationInput
                         reservationData={this.state.controls.name}
                         onChangeText={this.nameChangedHandler}
                     />
+
+                    <DatePicker
+                        style={{ width: 200 }}
+                        date={this.getToday()}
+                        mode="date"
+                        placeholder="select date"
+                        format="YYYY-MM-DD"
+                        minDate={this.getToday()}
+                        maxDate="2025-06-01"
+                        confirmBtnText="Confirm"
+                        cancelBtnText="Cancel"
+                        customStyles={{
+                            dateIcon: {
+                                position: 'absolute',
+                                left: 0,
+                                top: 4,
+                                marginLeft: 0
+                            },
+                            dateInput: {
+                                marginLeft: 36
+                            }
+                            // ... You can check the source to find the other keys.
+                        }}
+                        onDateChange={(date) => this.datePickedHandler()}
+                    />
+
                     <View style={styles.button}>
                         {submitButton}
                     </View>
