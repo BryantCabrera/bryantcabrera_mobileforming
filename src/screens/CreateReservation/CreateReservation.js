@@ -46,7 +46,7 @@ class CreateReservationScreen extends Component {
                     }
                 },
                 hotelName: {
-                    value: "",
+                    value: "Hilton, LAX",
                     valid: false,
                     touched: false,
                     validationRules: {
@@ -88,31 +88,15 @@ class CreateReservationScreen extends Component {
         }
     }
 
-    nameChangedHandler = val => {
+    inputChangedHandler = (val, type) => {
         this.setState(prevState => {
             return {
                 controls: {
                     ...prevState.controls,
-                    name: {
-                        ...prevState.controls.name,
+                    [type]: {
+                        ...prevState.controls[type],
                         value: val,
-                        valid: validate(val, prevState.controls.name.validationRules),
-                        touched: true
-                    }
-                }
-            };
-        });
-    };
-
-    hotelNameChangedHandler = val => {
-        this.setState(prevState => {
-            return {
-                controls: {
-                    ...prevState.controls,
-                    hotelName: {
-                        ...prevState.controls.hotelName,
-                        value: val,
-                        valid: validate(val, prevState.controls.hotelName.validationRules),
+                        valid: validate(val, prevState.controls[type].validationRules),
                         touched: true
                     }
                 }
@@ -152,8 +136,6 @@ class CreateReservationScreen extends Component {
                 }
             };
         });
-
-        console.log(date, type, this.state.controls.arrivalDate.value, ' updated Date');
     }
 
     reservationCreatedHandler = () => {
@@ -193,14 +175,14 @@ class CreateReservationScreen extends Component {
 
                     <ReservationInput
                         reservationData={this.state.controls.name}
-                        onChangeText={this.nameChangedHandler}
+                        onChangeText={(value) => this.inputChangedHandler(value, 'name')}
                     />
                     
                     <Picker
-                        selectedValue={this.state.language}
+                        selectedValue={this.state.controls.hotelName.value}
                         style={styles.hotelPicker}
                         onValueChange={(itemValue, itemIndex) =>
-                            this.setState({ language: itemValue })
+                            this.inputChangedHandler(itemValue, 'hotelName')
                         }>
                         <Picker.Item label="DoubleTree, Downtown Los Angeles" value="lDoubleTree, Downtown Los Angeles" />
                         <Picker.Item label="Hilton Checkers, Los Angeles" value="Hilton Checkers, Los Angeles" />
