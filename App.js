@@ -1,4 +1,5 @@
 import { Navigation } from "react-native-navigation";
+import apolloAndReduxProviderHOC from './src/components/ApolloHOC/ApolloHOC';
 
 import AuthScreen from "./src/screens/Auth/Auth";
 import CreateReservationScreen from "./src/screens/CreateReservation/CreateReservation";
@@ -14,7 +15,7 @@ Navigation.registerComponent(
 );
 Navigation.registerComponent(
     "bryant-mobileforming.CreateReservationScreen",
-    () => CreateReservationScreen
+    () => apolloAndReduxProviderHOC(CreateReservationScreen)
 );
 Navigation.registerComponent(
     "bryant-mobileforming.FindReservationScreen",
