@@ -32,6 +32,8 @@ class CreateReservationScreen extends Component {
     }
 
     reset = () => {
+        const today = this.getToday();
+
         this.setState({
             controls: {
                 name: {
@@ -51,7 +53,7 @@ class CreateReservationScreen extends Component {
                     }
                 },
                 arrivalDate: {
-                    value: null,
+                    value: today,
                     valid: false
                 },
                 departureDate: {
@@ -137,18 +139,20 @@ class CreateReservationScreen extends Component {
         return today;
     }
 
-    datePickedHandler = image => {
+    datePickedHandler = date => {
         this.setState(prevState => {
             return {
                 controls: {
                     ...prevState.controls,
-                    image: {
-                        value: image,
+                    arrivalDate: {
+                        value: date,
                         valid: true
                     }
                 }
             };
         });
+
+        console.log(date, this.state.controls.arrivalDate.value, ' updated Date');
     }
 
     reservationCreatedHandler = () => {
@@ -191,30 +195,35 @@ class CreateReservationScreen extends Component {
                         onChangeText={this.nameChangedHandler}
                     />
 
-                    <DatePicker
-                        style={{ width: 200 }}
-                        date={this.getToday()}
-                        mode="date"
-                        placeholder="select date"
-                        format="YYYY-MM-DD"
-                        minDate={this.getToday()}
-                        maxDate="2025-06-01"
-                        confirmBtnText="Confirm"
-                        cancelBtnText="Cancel"
-                        customStyles={{
-                            dateIcon: {
-                                position: 'absolute',
-                                left: 0,
-                                top: 4,
-                                marginLeft: 0
-                            },
-                            dateInput: {
-                                marginLeft: 36
-                            }
-                            // ... You can check the source to find the other keys.
-                        }}
-                        onDateChange={(date) => this.datePickedHandler()}
-                    />
+                    <View style={styles.datePicker}>
+                        <Text style={styles.datePickerText}>
+                            Arrival:
+                        </Text>
+                        <DatePicker
+                            style={{ width: 200 }}
+                            date={this.state.controls.arrivalDate.value}
+                            mode="date"
+                            placeholder="select date"
+                            format="YYYY-MM-DD"
+                            minDate={this.getToday()}
+                            maxDate="2025-06-01"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    left: 0,
+                                    top: 4,
+                                    marginLeft: 0
+                                },
+                                dateInput: {
+                                    marginLeft: 36
+                                }
+                                // ... You can check the source to find the other keys.
+                            }}
+                            onDateChange={(date) => this.datePickedHandler(date)}
+                        />
+                    </View>
 
                     <View style={styles.button}>
                         {submitButton}
@@ -243,6 +252,14 @@ const styles = StyleSheet.create({
     previewImage: {
         width: "100%",
         height: "100%"
+    },
+    datePicker: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center"
+    },
+    datePickerText: {
+        fontWeight: "800"
     }
 });
 
