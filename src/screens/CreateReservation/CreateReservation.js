@@ -139,12 +139,12 @@ class CreateReservationScreen extends Component {
         return today;
     }
 
-    datePickedHandler = date => {
+    datePickedHandler = (date, type) => {
         this.setState(prevState => {
             return {
                 controls: {
                     ...prevState.controls,
-                    arrivalDate: {
+                    [type]: {
                         value: date,
                         valid: true
                     }
@@ -152,7 +152,7 @@ class CreateReservationScreen extends Component {
             };
         });
 
-        console.log(date, this.state.controls.arrivalDate.value, ' updated Date');
+        console.log(date, type, this.state.controls.arrivalDate.value, ' updated Date');
     }
 
     reservationCreatedHandler = () => {
@@ -197,7 +197,7 @@ class CreateReservationScreen extends Component {
 
                     <View style={styles.datePicker}>
                         <Text style={styles.datePickerText}>
-                            Arrival:
+                            Arrive:
                         </Text>
                         <DatePicker
                             style={{ width: 200 }}
@@ -221,7 +221,37 @@ class CreateReservationScreen extends Component {
                                 }
                                 // ... You can check the source to find the other keys.
                             }}
-                            onDateChange={(date) => this.datePickedHandler(date)}
+                            onDateChange={(date) => this.datePickedHandler(date, 'arrivalDate')}
+                        />
+                    </View>
+
+                    <View style={styles.datePicker}>
+                        <Text style={styles.datePickerText}>
+                            Depart:
+                        </Text>
+                        <DatePicker
+                            style={{ width: 200 }}
+                            date={this.state.controls.departureDate.value}
+                            mode="date"
+                            placeholder="select date"
+                            format="YYYY-MM-DD"
+                            minDate={this.getToday()}
+                            maxDate="2025-06-01"
+                            confirmBtnText="Confirm"
+                            cancelBtnText="Cancel"
+                            customStyles={{
+                                dateIcon: {
+                                    position: 'absolute',
+                                    left: 0,
+                                    top: 4,
+                                    marginLeft: 0
+                                },
+                                dateInput: {
+                                    marginLeft: 36
+                                }
+                                // ... You can check the source to find the other keys.
+                            }}
+                            onDateChange={(date) => this.datePickedHandler(date, 'departureDate')}
                         />
                     </View>
 
@@ -254,8 +284,9 @@ const styles = StyleSheet.create({
         height: "100%"
     },
     datePicker: {
+        display: "flex",
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center"
     },
     datePickerText: {
