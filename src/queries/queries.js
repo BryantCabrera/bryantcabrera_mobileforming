@@ -16,3 +16,14 @@ export const createReservation = gql`
         }
     }
 `
+
+export const reservationsQuery = gql`
+query {
+    reservations {
+        id
+        name
+        hotelName
+        arrivalDate
+        departureDate
+    }
+}`

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import { createReservation } from '../../queries/queries';
 import {
     View,
     Text,
@@ -139,9 +141,38 @@ class CreateReservationScreen extends Component {
     }
 
     reservationCreatedHandler = () => {
-        alert('Reservation Successfully Created');
-        this.reset();
+        this.setState({
+            isLoading: true
+        });
 
+        const newReservation = {
+            name: this.state.controls.name.value,
+            hotelName: this.state.controls.hotelName.value,
+            arrivalDate: this.state.controls.arrivalDate.value,
+            departureDate: this.state.controls.departureDate.value
+        }
+
+        // this.props.mutate({
+        //     // this input is defined in the const imported from queries and used at the bottom of this file
+        //     // if the output name is the same as the variable name, just pass it into destructured component, and it will make the new object for us with appropriate keys
+        //     variables: { data: newReservation },
+        //     // the store is the behind the scenes cache, global state of our application that makes state available to all components
+        //     update: (store, { data: { createReservation } }) => {
+        //         // Reads the data from our cache for this query.
+        //         const data = store.readQuery({ query: reservationsQuery });
+        //         console.log(data, 'this is data from CreateReservations');
+        //         // Add our comment from the mutation to the end.
+        //         data.reservations.push(createReservation);
+        //         console.log(data, 'this is updated data from CreateRevervation');
+        //         // // Write our data back to the cache.
+        //         //takes in 2 arguments type of data, and the data we write to the query
+        //         store.writeQuery({ query: reservationsQuery, data });
+        //         console.log(store, ' this is store from CreateRevervation');
+        //     },
+        // });
+        
+        this.reset();
+        alert('Reservation Successfully Created');
         // Alternate way to tab, but immediately goes there without waiting for the Place to add/create
         // this.props.navigator.switchToTab({tabIndex: 0});
     };
@@ -296,4 +327,6 @@ const styles = StyleSheet.create({
     }
 });
 
-export default CreateReservationScreen;
+const CreateReservationWithMutation = graphql(createReservation)(CreateReservationScreen);
+
+export default CreateReservationWithMutation;
