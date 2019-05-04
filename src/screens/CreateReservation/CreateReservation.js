@@ -12,6 +12,9 @@ import {
     TouchableWithoutFeedback,
     ActivityIndicator
 } from 'react-native';
+import MainText from "../../components/UI/MainText/MainText";
+import HeadingText from "../../components/UI/HeadingText/HeadingText";
+import ReservationInput from "../../components/ReservationInput/ReservationInput";
 
 class CreateReservationScreen extends Component {
     componentDidMount() {
