@@ -4,6 +4,7 @@ import {
     Text,
     TextInput,
     Button,
+    Picker,
     StyleSheet,
     ScrollView,
     Image,
@@ -194,6 +195,19 @@ class CreateReservationScreen extends Component {
                         reservationData={this.state.controls.name}
                         onChangeText={this.nameChangedHandler}
                     />
+                    
+                    <Picker
+                        selectedValue={this.state.language}
+                        style={styles.hotelPicker}
+                        onValueChange={(itemValue, itemIndex) =>
+                            this.setState({ language: itemValue })
+                        }>
+                        <Picker.Item label="DoubleTree, Downtown Los Angeles" value="lDoubleTree, Downtown Los Angeles" />
+                        <Picker.Item label="Hilton Checkers, Los Angeles" value="Hilton Checkers, Los Angeles" />
+                        <Picker.Item label="DoubleTree, West Los Angeles" value="DoubleTree, West Los Angeles" />
+                        <Picker.Item label="Hilton, LAX" value="Hilton, LAX" />
+                        <Picker.Item label="Hampton Inn & Suites, Hollywood" value="Hampton Inn & Suites, Hollywood" />
+                    </Picker>
 
                     <View style={styles.datePicker}>
                         <Text style={styles.datePickerText}>
@@ -283,11 +297,17 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%"
     },
+    hotelPicker: {
+        height: 200,
+        width: "95%",
+        margin: 5
+    },
     datePicker: {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        margin: 5
     },
     datePickerText: {
         fontWeight: "800"
