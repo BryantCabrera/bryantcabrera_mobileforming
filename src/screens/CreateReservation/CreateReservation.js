@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { ApolloProvider } from 'react-apollo';
-import { ApolloClient, HttpLink, InMemoryCache } from 'apollo-boost';
 import { graphql } from 'react-apollo';
 import { createReservation, reservationsQuery } from '../../queries/queries';
 import {
@@ -34,6 +32,8 @@ class CreateReservationScreen extends Component {
 
     componentWillMount() {
         this.reset();
+
+
     }
 
     reset = () => {
