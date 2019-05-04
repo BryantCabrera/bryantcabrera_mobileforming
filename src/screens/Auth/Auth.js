@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import { reservationsQuery } from '../../queries/queries';
 import {
     View,
     Text,
@@ -17,6 +19,10 @@ import startMainTabs from '../MainTabs/startMainTabs';
 class AuthScreen extends Component {
     componentDidMount() {
         startMainTabs();
+    }
+
+    componentWillMount() {
+        
     }
 
     render() {
