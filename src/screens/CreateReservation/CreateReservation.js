@@ -47,7 +47,7 @@ class CreateReservationScreen extends Component {
                 },
                 hotelName: {
                     value: "Hilton, LAX",
-                    valid: false,
+                    valid: true,
                     touched: false,
                     validationRules: {
                         notEmpty: true
@@ -55,7 +55,7 @@ class CreateReservationScreen extends Component {
                 },
                 arrivalDate: {
                     value: today,
-                    valid: false
+                    valid: true
                 },
                 departureDate: {
                     value: null,
@@ -184,7 +184,7 @@ class CreateReservationScreen extends Component {
                         onValueChange={(itemValue, itemIndex) =>
                             this.inputChangedHandler(itemValue, 'hotelName')
                         }>
-                        <Picker.Item label="DoubleTree, Downtown Los Angeles" value="lDoubleTree, Downtown Los Angeles" />
+                        <Picker.Item label="DoubleTree, Downtown Los Angeles" value="DoubleTree, Downtown Los Angeles" />
                         <Picker.Item label="Hilton Checkers, Los Angeles" value="Hilton Checkers, Los Angeles" />
                         <Picker.Item label="DoubleTree, West Los Angeles" value="DoubleTree, West Los Angeles" />
                         <Picker.Item label="Hilton, LAX" value="Hilton, LAX" />
