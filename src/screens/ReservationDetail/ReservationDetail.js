@@ -49,21 +49,33 @@ class ReservationDetailScreen extends Component {
         switch (this.props.selectedReservation.hotelName) {
             case 'DoubleTree, Downtown Los Angeles':
                 image = 'https://i.imgur.com/qvz4Ms0.jpg';
+                location.latitide = -118.2428;
+                location.longitude = 34.0504;
                 break;
             case 'Hilton Checkers, Los Angeles':
                 image = 'https://i.imgur.com/BbX7IA0.jpg';
+                location.latitide = -118.255082;
+                location.longitude = 34.049810;
                 break;
             case 'DoubleTree, West Los Angeles':
                 image = 'https://i.imgur.com/l4Y28vt.jpg';
+                location.latitide = -118.396515;
+                location.longitude = 33.983803;
                 break;
             case 'Hilton, LAX':
                 image = 'https://i.imgur.com/3wqsQxA.jpg';
+                location.latitide = -118.381616;
+                location.longitude = 33.946461;
                 break;
             case 'Hampton Inn & Suites, Hollywood':
                 image = 'https://i.imgur.com/00swvth.jpg';
+                location.latitide = -118.327262;
+                location.longitude = 34.092073;
                 break;
             default:
                 image = 'https://i.imgur.com/BZMZhmG.png';
+                location.latitide = -118.307448;
+                location.longitude = 33.996907;
         }
 
         return (
