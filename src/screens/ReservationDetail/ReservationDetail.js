@@ -39,10 +39,65 @@ class ReservationDetailScreen extends Component {
     }
 
     render() {
+        let image = '';
+
+        switch (this.props.selectedReservation.hotelName) {
+            case 'DoubleTree, Downtown Los Angeles':
+                image = 'https://i.imgur.com/qvz4Ms0.jpg';
+                break;
+            case 'Hilton Checkers, Los Angeles':
+                image = 'https://i.imgur.com/BbX7IA0.jpg';
+                break;
+            case 'DoubleTree, West Los Angeles':
+                image = 'https://i.imgur.com/l4Y28vt.jpg';
+                break;
+            case 'Hilton, LAX':
+                image = 'https://i.imgur.com/3wqsQxA.jpg';
+                break;
+            case 'Hampton Inn & Suites, Hollywood':
+                image = 'https://i.imgur.com/00swvth.jpg';
+                break;
+            default:
+                image = 'https://i.imgur.com/BZMZhmG.png';
+        }
+
         return (
-            <Text>
-                This is ReservationDetail.
-            </Text>
+            <View
+                style={[
+                    styles.container,
+                    this.state.viewMode === "portrait"
+                        ? styles.portraitContainer
+                        : styles.landscapeContainer
+                ]}
+            >
+                <View style={styles.placeDetailContainer}>
+                    <View style={styles.subContainer}>
+                        <Image
+                            source={{ uri: image }}
+                            style={styles.placeImage}
+                        />
+                    </View>
+                    {/* Map will go here */}
+                </View>
+                <View style={styles.subContainer}>
+                    <View>
+                        <Text style={styles.placeName}>
+                            {this.props.selectedReservation.hotelName}
+                        </Text>
+                    </View>
+                    <View>
+                        <TouchableOpacity onPress={this.placeDeletedHandler}>
+                            <View style={styles.deleteButton}>
+                                <Icon
+                                    size={30}
+                                    name={Platform.OS === "android" ? "md-trash" : "ios-trash"}
+                                    color="red"
+                                />
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View>
         )
     }
 }

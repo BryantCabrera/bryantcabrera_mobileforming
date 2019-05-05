@@ -22,7 +22,7 @@ const placeList = (props) => {
                         image = 'https://i.imgur.com/l4Y28vt.jpg';
                         break;
                     case 'Hilton, LAX':
-                        image = 'https://i.imgur.com/Bct0UUc.jpg';
+                        image = 'https://i.imgur.com/3wqsQxA.jpg';
                         break;
                     case 'Hampton Inn & Suites, Hollywood':
                         image = 'https://i.imgur.com/00swvth.jpg';
