@@ -150,6 +150,59 @@ class AuthScreen extends Component {
     };
 
     render() {
+        let headingText = null;
+        let confirmPasswordControl = null;
+
+        // only want to render this if we are not waiting for our request to finish
+        let submitButton = (
+            <ButtonWithBackground
+                color="#29aaf4"
+                onPress={this.authHandler}
+                disabled={
+                    (!this.state.controls.confirmPassword.valid &&
+                        this.state.authMode === "signup") ||
+                    !this.state.controls.email.valid ||
+                    !this.state.controls.password.valid
+                }
+            >
+                Submit
+            </ButtonWithBackground>
+        );
+
+        if (this.state.viewMode === "portrait") {
+            headingText = (
+                <MainText>
+                    <HeadingText>Please Log In</HeadingText>
+                </MainText>
+            );
+        }
+
+        if (this.state.authMode === "signup") {
+            confirmPasswordControl = (
+                <View
+                    style={
+                        this.state.viewMode === "portrait"
+                            ? styles.portraitPasswordWrapper
+                            : styles.landscapePasswordWrapper
+                    }
+                >
+                    <DefaultInput
+                        placeholder="Confirm Password"
+                        style={styles.input}
+                        value={this.state.controls.confirmPassword.value}
+                        onChangeText={val => this.updateInputState("confirmPassword", val)}
+                        valid={this.state.controls.confirmPassword.valid}
+                        touched={this.state.controls.confirmPassword.touched}
+                        secureTextEntry
+                    />
+                </View>
+            );
+        }
+
+        if (this.state.isLoading) {
+            submitButton = <ActivityIndicator />;
+        }
+
         return (
             <Text>
                 This is Auth.
