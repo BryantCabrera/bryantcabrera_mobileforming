@@ -8,7 +8,7 @@ const client = new ApolloClient({
 });
 
 // This is a Higher Order Component (HOC) that will be used to wrap screens to bind them to the Apollo Client/GraphQL
-export default apolloAndReduxProviderHOC = (WrappedComponent) => {
+export default apolloHOC = (WrappedComponent) => {
     class Enhance extends React.Component {
         render() {
             return (

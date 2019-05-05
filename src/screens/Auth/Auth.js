@@ -53,7 +53,11 @@ class AuthScreen extends Component {
                 touched: false
             }
         },
-        isLoading: false
+        isLoading: false,
+        loggedUser: {
+            name: "",
+            email: ""
+        }
     };
 
     constructor(props) {
@@ -65,8 +69,6 @@ class AuthScreen extends Component {
     componentWillUnmount() {
         // Modularized the function to remove eventListener so that we could call it in this life cycle hook
         Dimensions.removeEventListener("change", this.updateStyles);
-
-        startMainTabs();
     }
     
     componentDidMount() {
@@ -148,6 +150,34 @@ class AuthScreen extends Component {
             };
         });
     };
+
+    authHandler = () => {
+        // This is the request body that I would normally pass to backend to authenticate user
+            // don't need confirmPassword here, that was just for frontend
+        // const authData = {
+        //     email: this.state.controls.email.value,
+        //     password: this.state.controls.password.value
+        // };
+
+        const name = this.state.controls.email.value.replace(/\@\S*\s?/g, '');
+
+        this.setState({
+            loggedUser: {
+                name: name,
+                email: this.state.controls.email.value
+            }
+        })
+
+        this.props.navigator.push({
+            screen: "bryant-mobileforming.FindReservationScreen",
+            title: `${name}'s Reservations`,
+            passProps: {
+                name: name
+            }
+        });
+
+        // startMainTabs();
+    }
 
     render() {
         let headingText = null;
