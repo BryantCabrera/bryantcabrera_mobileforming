@@ -245,7 +245,7 @@ class AuthScreen extends Component {
                                     }
                                 >
                                     <DefaultInput
-                                        placeholder="Password"
+                                        placeholder="Password (min. 6 chars)"
                                         style={styles.input}
                                         value={this.state.controls.password.value}
                                         onChangeText={val => this.updateInputState("password", val)}
