@@ -8,6 +8,7 @@ import {
     StyleSheet,
     Animated
 } from 'react-native';
+import ReservationsList from '../../components/ReservationsList/ReservationsList';
 
 class FindReservationScreen extends Component {
     state = {
@@ -67,30 +68,95 @@ class FindReservationScreen extends Component {
     };
 
     render() {
-        return (
-            <Text>
-                This is FindReservation.
+        let content = (
+            // Wrap 2D content with Animated.View
+            // can use dynamically managed value
+            // style contains a JavaScript object
+            <Animated.View
+                style={{
+                    // can only use this.state.removeAnim on Animated.View, it's not just a value
+                    opacity: this.state.removeAnim,
+                    transform: [
+                        {
+                            // .interpolate() lets you use the value managed by React and convert it to a different value
+                            scale: this.state.removeAnim.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [12, 1]
+                            })
+                        }
+                    ]
+                }}
+            >
+                <TouchableOpacity onPress={this.reservationsSearchHandler}>
+                    <View style={styles.searchButton}>
+                        <Text style={styles.searchButtonText}>Find Places</Text>
+                    </View>
+                </TouchableOpacity>
+            </Animated.View>
+        );
 
-                {/* <Query query={usersReservationsQuery} variables={this.state.userName}>
-                    {({ loading, error, data }) => {
-                        if (loading) return null;
-                        if (error) return `Error! ${error}`;
-
-                        return (
-                            data.reervations.map(({ id, name }) => (
-                                <Text>
-                                    {id}
-                                    {name}
-                                </Text>
-                            ))
-                        );
+        if (this.state.reservationsLoaded) {
+            content = (
+                <Animated.View
+                    style={{
+                        opacity: this.state.placesAnim
                     }}
-                </Query> */}
+                >
+                    <ReservationsList
+                        reservations={this.props.data.reservations}
+                        onItemSelected={this.itemSelectedHandler}
+                    />
+                </Animated.View>
+            );
+        }
+
+        return (
+            <View style={this.state.placesLoaded ? null : styles.buttonContainer}>
+                {content}
+            </View>
+
+            // <Text>
+            //     This is FindReservation.
+
+            //     {/* <Query query={usersReservationsQuery} variables={this.state.userName}>
+            //         {({ loading, error, data }) => {
+            //             if (loading) return null;
+            //             if (error) return `Error! ${error}`;
+
+            //             return (
+            //                 data.reervations.map(({ id, name }) => (
+            //                     <Text>
+            //                         {id}
+            //                         {name}
+            //                     </Text>
+            //                 ))
+            //             );
+            //         }}
+            //     </Query> */}
                 
-            </Text>
+            // </Text>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    buttonContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    searchButton: {
+        borderColor: "orange",
+        borderWidth: 3,
+        borderRadius: 50,
+        padding: 20
+    },
+    searchButtonText: {
+        color: "orange",
+        fontWeight: "bold",
+        fontSize: 26
+    }
+});
 
 // export default FindReservationScreen;
 

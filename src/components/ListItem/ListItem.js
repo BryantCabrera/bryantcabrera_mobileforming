@@ -4,8 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 const listItem = (props) => (
     <TouchableOpacity onPress={props.onItemPressed}>
         <View style={styles.listItem}>
-            <Image source={props.placeImage} style={styles.placeImage} />
-            <Text>{props.placeName}</Text>
+            {/* <Image source={props.hotelImage} style={styles.hotelImage} /> */}
+            <Text>{props.hotelName} // {props.arrivalDate} to {props.departureDate}</Text>
         </View>
     </TouchableOpacity>
 );
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     //react native automatically uses cover property
-    placeImage: {
+    hotelImage: {
         marginRight: 8,
         height: 30,
         width: 30
