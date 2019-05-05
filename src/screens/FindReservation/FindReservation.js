@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, Query } from 'react-apollo';
 import { usersReservationsQuery } from '../../queries/queries';
 import {
     View,
@@ -8,9 +8,11 @@ import {
     StyleSheet,
     Animated
 } from 'react-native';
+import ReservationsList from '../../components/ReservationsList/ReservationsList';
 
 class FindReservationScreen extends Component {
     state = {
+        userName: 'Bryant',
         reservationsLoaded: false,
         // You can call this anything you want
         // It instantiates a new Animated.Value
@@ -25,6 +27,16 @@ class FindReservationScreen extends Component {
         // // Here, we specify a navigation method whenever a navigation event occurs
         // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
     }
+
+    // componentDidMount() {
+    //     usersReservationsQuery({
+    //         variables: {
+    //             name: this.state.userName
+    //         }
+    //     })
+
+    //     console.log(this.props, ' FindReservationScreen props');
+    // }
 
     reservationsLoadedHandler = () => {
         Animated.timing(this.state.reservationsAnim, {
@@ -55,12 +67,33 @@ class FindReservationScreen extends Component {
         return (
             <Text>
                 This is FindReservation.
+
+                {/* <Query query={usersReservationsQuery} variables={this.state.userName}>
+                    {({ loading, error, data }) => {
+                        if (loading) return null;
+                        if (error) return `Error! ${error}`;
+
+                        return (
+                            data.reervations.map(({ id, name }) => (
+                                <Text>
+                                    {id}
+                                    {name}
+                                </Text>
+                            ))
+                        );
+                    }}
+                </Query> */}
+                
             </Text>
         )
     }
 }
 
 // export default FindReservationScreen;
+
+// const FindReservationsQuery = graphql(usersReservationsQuery, {
+//     options: (props) => ({ variables: { name: props.userName } })
+// })(FindReservationScreen);
 
 const FindReservationsQuery = graphql(usersReservationsQuery)(FindReservationScreen);
 
