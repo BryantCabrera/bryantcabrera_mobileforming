@@ -18,11 +18,11 @@ import startMainTabs from '../MainTabs/startMainTabs';
 
 class AuthScreen extends Component {
     componentDidMount() {
-        startMainTabs();
+        
     }
 
     componentWillMount() {
-        
+        startMainTabs();
     }
 
     render() {
