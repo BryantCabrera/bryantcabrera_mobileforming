@@ -42,6 +42,7 @@ const placeList = (props) => {
                     onItemPressed={() => props.onItemSelected(info.item.id)}
                 />
             }}
+            keyExtractor={(item, index) => index.toString()}
         />
     )
 }
