@@ -32,16 +32,6 @@ class FindReservationScreen extends Component {
         
     }
 
-    // componentDidMount() {
-    //     usersReservationsQuery({
-    //         variables: {
-    //             name: this.state.userName
-    //         }
-    //     })
-
-    //     console.log(this.props, ' FindReservationScreen props');
-    // }
-
     reservationsLoadedHandler = () => {
         Animated.timing(this.state.reservationsAnim, {
             toValue: 1,
@@ -114,27 +104,6 @@ class FindReservationScreen extends Component {
             <View style={this.state.placesLoaded ? null : styles.buttonContainer}>
                 {content}
             </View>
-
-            // <Text>
-            //     This is FindReservation.
-
-            //     {/* <Query query={usersReservationsQuery} variables={this.state.userName}>
-            //         {({ loading, error, data }) => {
-            //             if (loading) return null;
-            //             if (error) return `Error! ${error}`;
-
-            //             return (
-            //                 data.reervations.map(({ id, name }) => (
-            //                     <Text>
-            //                         {id}
-            //                         {name}
-            //                     </Text>
-            //                 ))
-            //             );
-            //         }}
-            //     </Query> */}
-                
-            // </Text>
         )
     }
 }
@@ -157,12 +126,6 @@ const styles = StyleSheet.create({
         fontSize: 26
     }
 });
-
-// export default FindReservationScreen;
-
-// const FindReservationsQuery = graphql(usersReservationsQuery, {
-//     options: (props) => ({ variables: { name: props.userName } })
-// })(FindReservationScreen);
 
 const FindReservationsQuery = graphql(usersReservationsQuery)(FindReservationScreen);
 

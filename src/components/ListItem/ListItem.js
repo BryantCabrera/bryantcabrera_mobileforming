@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center"
     },
-    //react native automatically uses cover property
+    // React Native automatically uses cover property
     hotelImage: {
         marginRight: 8,
         height: 40,
