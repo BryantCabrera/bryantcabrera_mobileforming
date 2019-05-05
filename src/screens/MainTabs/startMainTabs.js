@@ -13,8 +13,8 @@ const startTabs = () => {
             tabs: [
                 {
                     screen: "bryant-mobileforming.FindReservationScreen",
-                    label: "Find Reservation",
-                    title: "Find Reservation",
+                    label: "Your Reservations",
+                    title: "Your Reservations",
                     icon: sources[0],
                     navigatorButtons: {
                         leftButtons: [
