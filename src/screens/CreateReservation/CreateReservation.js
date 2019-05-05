@@ -218,6 +218,18 @@ class CreateReservationScreen extends Component {
                         reservationData={this.state.controls.name}
                         onChangeText={(value) => this.inputChangedHandler(value, 'name')}
                     />
+
+                    {/* <View style={styles.placeDetailContainer}>
+                        <View style={styles.subContainer}>
+                            <Image
+                                source={{ uri: image }}
+                                style={styles.placeImage}
+                            />
+                        </View>
+                        <View style={styles.subContainer}>
+                            
+                        </View>
+                    </View> */}
                     
                     <Picker
                         selectedValue={this.state.controls.hotelName.value}
@@ -320,10 +332,16 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%"
     },
+    placeDetailContainer: {
+        flex: 2
+    },
     hotelPicker: {
         height: 200,
         width: "95%",
         margin: 5
+    },
+    subContainer: {
+        flex: 1
     },
     datePicker: {
         display: "flex",
