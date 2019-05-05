@@ -171,10 +171,10 @@ class CreateReservationScreen extends Component {
     
                     // Writes our data back to the cache.
                     // Takes in 2 arguments type of data, and the data we write to the query
-                    store.writeQuery({ query: reservationsQuery, newData });
+                    store.writeQuery({ query: reservationsQuery, data: newData });
                     console.log(store, ' this is store from CreateRevervation');
                 } catch (error) {
-                    console.log(error, 'Not updating store - Projects not loaded yet');
+                    console.log(error, 'Not updating store - Reservations not loaded yet');
                 }
             }
         });
