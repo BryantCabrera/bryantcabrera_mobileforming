@@ -21,7 +21,7 @@ import MainText from "../../components/UI/MainText/MainText";
 import ButtonWithBackground from "../../components/UI/ButtonWithBackground/ButtonWithBackground";
 import validate from "../../utility/validation";
 import startMainTabs from '../MainTabs/startMainTabs';
-import backgroundImage from "../../assets/background.jpg";
+import backgroundImage from "../../assets/BryantCabrera_mobileforming_authbg.png";
 
 class AuthScreen extends Component {
     state = {
