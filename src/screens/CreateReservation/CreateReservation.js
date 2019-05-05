@@ -180,9 +180,11 @@ class CreateReservationScreen extends Component {
         });
         
         this.reset();
+
         alert('Reservation Successfully Created');
+
         // Alternate way to tab, but immediately goes there without waiting for the Place to add/create
-        // this.props.navigator.switchToTab({tabIndex: 0});
+        this.props.navigator.switchToTab({tabIndex: 0});
     };
 
     render() {
