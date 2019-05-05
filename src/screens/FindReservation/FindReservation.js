@@ -8,7 +8,6 @@ import {
     StyleSheet,
     Animated
 } from 'react-native';
-import ReservationsList from '../../components/ReservationsList/ReservationsList';
 
 class FindReservationScreen extends Component {
     state = {
@@ -26,6 +25,10 @@ class FindReservationScreen extends Component {
 
         // // Here, we specify a navigation method whenever a navigation event occurs
         // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+    }
+
+    componentWillMount() {
+        
     }
 
     // componentDidMount() {

@@ -166,15 +166,18 @@ class AuthScreen extends Component {
                 name: name,
                 email: this.state.controls.email.value
             }
-        })
-
-        this.props.navigator.push({
-            screen: "bryant-mobileforming.FindReservationScreen",
-            title: `${name}'s Reservations`,
-            passProps: {
-                name: name
-            }
         });
+
+        startMainTabs(name);
+
+        // Alternate way to navigate to other screens without tabs: push new screen onto screen stack
+        // this.props.navigator.push({
+        //     screen: "bryant-mobileforming.FindReservationScreen",
+        //     title: `${name}'s Reservations`,
+        //     passProps: {
+        //         name: name
+        //     }
+        // });
     }
 
     render() {
