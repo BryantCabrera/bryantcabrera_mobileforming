@@ -9,6 +9,7 @@ import {
     Platform,
     Dimensions
 } from 'react-native';
+import MapView from "react-native-maps";
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class ReservationDetailScreen extends Component {
@@ -40,6 +41,10 @@ class ReservationDetailScreen extends Component {
 
     render() {
         let image = '';
+        let location = {
+            latitude: 0,
+            longitude: 0
+        };
 
         switch (this.props.selectedReservation.hotelName) {
             case 'DoubleTree, Downtown Los Angeles':
