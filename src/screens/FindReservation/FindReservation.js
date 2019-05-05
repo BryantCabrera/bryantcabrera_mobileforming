@@ -32,6 +32,20 @@ class FindReservationScreen extends Component {
         
     }
 
+    itemSelectedHandler = id => {
+        const selectedReservation = this.props.data.reservations.find(place => {
+            return place.id === id;
+        });
+
+        this.props.navigator.push({
+            screen: "bryant-mobileforming.ReservationDetailScreen",
+            title: selectedReservation.hotelName,
+            passProps: {
+                selectedReservation: selectedReservation
+            }
+        });
+    };
+
     reservationsLoadedHandler = () => {
         Animated.timing(this.state.reservationsAnim, {
             toValue: 1,
