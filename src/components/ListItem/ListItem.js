@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 const listItem = (props) => (
     <TouchableOpacity onPress={props.onItemPressed}>
         <View style={styles.listItem}>
-            {/* <Image source={props.hotelImage} style={styles.hotelImage} /> */}
+            <Image source={{ uri: props.hotelImage }} style={styles.hotelImage} />
             <Text>{props.hotelName} // {props.arrivalDate} to {props.departureDate}</Text>
         </View>
     </TouchableOpacity>
