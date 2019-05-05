@@ -19,7 +19,7 @@ Navigation.registerComponent(
 );
 Navigation.registerComponent(
     "bryant-mobileforming.FindReservationScreen",
-    () => FindReservationScreen
+    () => apolloAndReduxProviderHOC(FindReservationScreen)
 );
 Navigation.registerComponent(
     "bryant-mobileforming.ReservationDetailScreen",
