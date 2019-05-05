@@ -18,12 +18,25 @@ export const createReservation = gql`
 `
 
 export const reservationsQuery = gql`
-query {
-    reservations {
-        id
-        name
-        hotelName
-        arrivalDate
-        departureDate
+    query {
+        reservations {
+            id
+            name
+            hotelName
+            arrivalDate
+            departureDate
+        }
     }
-}`
+`
+
+export const usersReservationsQuery = gql`
+    query reservations($name: String!) {
+        reservations(where: { name: $name }) {
+            id
+            name
+            hotelName
+            arrivalDate
+            departureDate
+        }
+    }
+`
