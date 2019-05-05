@@ -85,7 +85,15 @@ class ReservationDetailScreen extends Component {
                             {this.props.selectedReservation.hotelName}
                         </Text>
                     </View>
-                    <View>
+                    <View style={styles.infoText}>
+                        <Text>
+                            Arrival Date: {this.props.selectedReservation.arrivalDate}
+                        </Text>
+
+                        <Text>
+                            Departure Date: {this.props.selectedReservation.departureDate}
+                        </Text>
+
                         <TouchableOpacity onPress={this.placeDeletedHandler}>
                             <View style={styles.deleteButton}>
                                 <Icon
@@ -125,6 +133,9 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center",
         fontSize: 28
+    },
+    infoText: {
+        alignItems: "center"
     },
     map: {
         // preconfigured styles that ensure the map will fill the surrounding container
