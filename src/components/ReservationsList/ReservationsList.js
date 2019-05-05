@@ -31,8 +31,6 @@ const placeList = (props) => {
                         image = 'https://i.imgur.com/BZMZhmG.png';
                 }
 
-                console.log(image, 'this is image');
-
                 return <ListItem
                     // .value comes from how we wrote the object in this.setState in the function handler in App.js
                     hotelName={info.item.hotelName}

@@ -41,7 +41,7 @@ class ReservationDetailScreen extends Component {
 
     render() {
         let image = '';
-        let location = {
+        const location = {
             latitude: 0,
             longitude: 0
         };
@@ -49,33 +49,33 @@ class ReservationDetailScreen extends Component {
         switch (this.props.selectedReservation.hotelName) {
             case 'DoubleTree, Downtown Los Angeles':
                 image = 'https://i.imgur.com/qvz4Ms0.jpg';
-                location.latitide = -118.2428;
-                location.longitude = 34.0504;
+                location.latitude = 34.0504;
+                location.longitude = -118.2428;
                 break;
             case 'Hilton Checkers, Los Angeles':
                 image = 'https://i.imgur.com/BbX7IA0.jpg';
-                location.latitide = -118.255082;
-                location.longitude = 34.049810;
+                location.latitude = 34.049810;
+                location.longitude = -118.255082;
                 break;
             case 'DoubleTree, West Los Angeles':
                 image = 'https://i.imgur.com/l4Y28vt.jpg';
-                location.latitide = -118.396515;
-                location.longitude = 33.983803;
+                location.latitude = 33.983803;
+                location.longitude = -118.396515;
                 break;
             case 'Hilton, LAX':
                 image = 'https://i.imgur.com/3wqsQxA.jpg';
-                location.latitide = -118.381616;
-                location.longitude = 33.946461;
+                location.latitude = 33.946461;
+                location.longitude = -118.381616;
                 break;
             case 'Hampton Inn & Suites, Hollywood':
                 image = 'https://i.imgur.com/00swvth.jpg';
-                location.latitide = -118.327262;
-                location.longitude = 34.092073;
+                location.latitude = 34.092073;
+                location.longitude = -118.327262;
                 break;
             default:
                 image = 'https://i.imgur.com/BZMZhmG.png';
-                location.latitide = -118.307448;
-                location.longitude = 33.996907;
+                location.latitude = 33.996907;
+                location.longitude = -118.307448;
         }
 
         return (
@@ -94,7 +94,24 @@ class ReservationDetailScreen extends Component {
                             style={styles.placeImage}
                         />
                     </View>
-                    {/* Map will go here */}
+                    <View style={styles.subContainer}>
+                        <MapView
+                            initialRegion={{
+                                latitude: location.latitude,
+                                longitude: location.longitude,
+                                latitudeDelta: 0.0122,
+                                longitudeDelta:
+                                    Dimensions.get("window").width /
+                                    Dimensions.get("window").height *
+                                    0.0122,
+                                zoom: 1
+                            }}
+                            style={styles.map}
+                        >
+                            {/* Doesn't need to be conditional because there will be no case where we'll try to render this without having the marker */}
+                            <MapView.Marker coordinate={location} />
+                        </MapView>
+                    </View>
                 </View>
                 <View style={styles.subContainer}>
                     <View>
