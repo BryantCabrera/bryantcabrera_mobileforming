@@ -180,11 +180,11 @@ class AuthScreen extends Component {
     render() {
         let headingText = null;
         let confirmPasswordControl = null;
-
+        
         // only want to render this if we are not waiting for our request to finish
         let submitButton = (
             <ButtonWithBackground
-                color="#29aaf4"
+                color="#9C864C"
                 onPress={this.authHandler}
                 disabled={
                     (!this.state.controls.confirmPassword.valid &&
@@ -237,7 +237,7 @@ class AuthScreen extends Component {
                 <KeyboardAvoidingView style={styles.container} behavior="padding">
                     {headingText}
                     <ButtonWithBackground
-                        color="#29aaf4"
+                        color="#9C864C"
                         onPress={this.switchAuthModeHandler}
                     >
                         Switch to {this.state.authMode === "login" ? "Sign Up" : "Login"}
