@@ -160,19 +160,23 @@ class CreateReservationScreen extends Component {
             variables: { data: newReservation },
             // the store is the behind the scenes cache, global state of our application that makes state available to all components
             update: (store, { data: { createReservation } }) => {
-                // Reads the data from our cache for this query.
-                const newData = store.readQuery({ query: reservationsQuery });
-                console.log(newData, 'this is data from CreateReservation');
-
-                // Adds our comment from the mutation to the end.
-                newData.reservations.push(createReservation);
-                console.log(newData, 'this is updated data from CreateRevervation');
-
-                // Writes our data back to the cache.
-                // Takes in 2 arguments type of data, and the data we write to the query
-                store.writeQuery({ query: reservationsQuery, newData });
-                console.log(store, ' this is store from CreateRevervation');
-            },
+                try {
+                    // Reads the data from our cache for this query.
+                    const newData = store.readQuery({ query: reservationsQuery });
+                    console.log(newData, 'this is data from CreateReservation');
+    
+                    // Adds our comment from the mutation to the end.
+                    newData.reservations.push(createReservation);
+                    console.log(newData, 'this is updated data from CreateRevervation');
+    
+                    // Writes our data back to the cache.
+                    // Takes in 2 arguments type of data, and the data we write to the query
+                    store.writeQuery({ query: reservationsQuery, newData });
+                    console.log(store, ' this is store from CreateRevervation');
+                } catch (error) {
+                    console.log(error, 'Not updating store - Projects not loaded yet');
+                }
+            }
         });
         
         this.reset();
