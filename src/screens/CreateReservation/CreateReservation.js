@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 import { createReservation, reservationsQuery } from '../../queries/queries';
 import {
     View,
@@ -33,7 +33,7 @@ class CreateReservationScreen extends Component {
     componentWillMount() {
         this.reset();
 
-
+        console.log(this.props, ' this is props.data.reservations.');
     }
 
     reset = () => {
@@ -160,25 +160,31 @@ class CreateReservationScreen extends Component {
             variables: { data: newReservation },
             // the store is the behind the scenes cache, global state of our application that makes state available to all components
             update: (store, { data: { createReservation } }) => {
-                // Reads the data from our cache for this query.
-                const data = store.readQuery({ query: reservationsQuery });
-                console.log(data, 'this is data from CreateReservation');
-
-                // Adds our comment from the mutation to the end.
-                data.reservations.push(createReservation);
-                console.log(data, 'this is updated data from CreateRevervation');
-
-                // Writes our data back to the cache.
-                // Takes in 2 arguments type of data, and the data we write to the query
-                store.writeQuery({ query: reservationsQuery, data });
-                console.log(store, ' this is store from CreateRevervation');
-            },
+                try {
+                    // Reads the data from our cache for this query.
+                    const newData = store.readQuery({ query: reservationsQuery });
+                    console.log(newData, 'this is data from CreateReservation');
+    
+                    // Adds our comment from the mutation to the end.
+                    newData.reservations.push(createReservation);
+                    console.log(newData, 'this is updated data from CreateRevervation');
+    
+                    // Writes our data back to the cache.
+                    // Takes in 2 arguments type of data, and the data we write to the query
+                    store.writeQuery({ query: reservationsQuery, data: newData });
+                    console.log(store, ' this is store from CreateRevervation');
+                } catch (error) {
+                    console.log(error, 'Not updating store - Reservations not loaded yet');
+                }
+            }
         });
         
         this.reset();
+
         alert('Reservation Successfully Created');
+
         // Alternate way to tab, but immediately goes there without waiting for the Place to add/create
-        // this.props.navigator.switchToTab({tabIndex: 0});
+        this.props.navigator.switchToTab({tabIndex: 0});
     };
 
     render() {
@@ -331,9 +337,15 @@ const styles = StyleSheet.create({
     }
 });
 
-const CreateReservationWithMutation = graphql(createReservation)(CreateReservationScreen);
+// const CreateReservationWithMutation = graphql(createReservation)(CreateReservationScreen);
 
-export default CreateReservationWithMutation;
+// export default CreateReservationWithMutation;
+
+export default compose(
+    graphql(reservationsQuery),
+    graphql(createReservation)
+)(CreateReservationScreen);
+
 
 // const cache = new InMemoryCache();
 // const link = new HttpLink({
