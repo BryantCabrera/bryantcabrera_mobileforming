@@ -175,8 +175,6 @@ class AuthScreen extends Component {
                 name: name
             }
         });
-
-        // startMainTabs();
     }
 
     render() {
