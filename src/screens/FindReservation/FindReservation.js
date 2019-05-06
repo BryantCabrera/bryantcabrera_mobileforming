@@ -11,6 +11,10 @@ import {
 import ReservationsList from '../../components/ReservationsList/ReservationsList';
 
 class FindReservationScreen extends Component {
+    static navigatorStyle = {
+        navBarButtonColor: "orange"
+    }
+
     state = {
         userName: 'Bryant',
         reservationsLoaded: false,
@@ -25,13 +29,13 @@ class FindReservationScreen extends Component {
         super(props);
 
         // // Here, we specify a navigation method whenever a navigation event occurs
-        // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
     }
 
     onNavigatorEvent = event => {
         if (event.type === "ScreenChangedEvent") {
             if (event.id === "willAppear") {
-                console.log(store, ' store from FindReservation');
+                console.log(this.store, ' store from FindReservation');
             }
         }
 
@@ -54,7 +58,8 @@ class FindReservationScreen extends Component {
             screen: "bryant-mobileforming.ReservationDetailScreen",
             title: selectedReservation.hotelName,
             passProps: {
-                selectedReservation: selectedReservation
+                selectedReservation: selectedReservation,
+                name: this.props.name
             }
         });
     };

@@ -61,6 +61,15 @@ class ReservationDetailScreen extends Component {
 
         // Removes the current page from the stack, hence "navigating back"
         this.props.navigator.pop();
+
+        // Alternate way to change screens
+        // this.props.navigator.push({
+        //     screen: "bryant-mobileforming.FindReservationScreen",
+        //     title: `Your Reservations`,
+        //     passProps: {
+        //         name: this.props.name
+        //     }
+        // });
     }
 
     render() {

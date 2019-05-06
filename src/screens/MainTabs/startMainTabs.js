@@ -42,6 +42,9 @@ const startTabs = (name) => {
                                 id: "sideDrawerToggle"
                             }
                         ]
+                    },
+                    passProps: {
+                        name: name
                     }
                 }
             ],
