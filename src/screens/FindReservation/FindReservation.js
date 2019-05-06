@@ -16,7 +16,8 @@ class FindReservationScreen extends Component {
     }
 
     state = {
-        userName: 'Bryant',
+        userName: '',
+        // reservations: null,
         reservationsLoaded: false,
         // You can call this anything you want
         // It instantiates a new Animated.Value
@@ -32,10 +33,19 @@ class FindReservationScreen extends Component {
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
     }
 
+    componentDidMount() {
+        // console.log(this.props.data.reservations, ' props res from Find')
+        // this.setState({
+        //     userName: this.props.name,
+        //     reservations: this.props.data.reservations
+        // });
+    }
+
     onNavigatorEvent = event => {
         if (event.type === "ScreenChangedEvent") {
             if (event.id === "willAppear") {
-                console.log(this.store, ' store from FindReservation');
+                this.props.data.refetch();
+                console.log(this.props, 'props from Find');
             }
         }
 
@@ -126,8 +136,6 @@ class FindReservationScreen extends Component {
                 >
                     <ReservationsList
                         reservations={this.props.data.reservations}
-                        // reservations={this.state.reservations}
-                        // reservations={store.data.data.filter(reservation => reservation.name.includes(this.props.name))}
                         onItemSelected={this.itemSelectedHandler}
                     />
                 </Animated.View>
@@ -161,6 +169,10 @@ const styles = StyleSheet.create({
     }
 });
 
-const FindReservationsQuery = graphql(usersReservationsQuery)(FindReservationScreen);
+const FindReservationsQuery = graphql(usersReservationsQuery, {
+    options: {
+        fetchPolicy: 'network-only'
+    }
+})(FindReservationScreen);
 
 export default FindReservationsQuery;
