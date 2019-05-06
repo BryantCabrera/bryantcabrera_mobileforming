@@ -126,6 +126,14 @@ class CreateReservationScreen extends Component {
         return today;
     }
 
+    getTomorrow = () => {
+        const today = new Date();
+        let tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 1);
+
+        return tomorrow;
+    }
+
     datePickedHandler = (date, type) => {
         this.setState(prevState => {
             return {
@@ -333,7 +341,7 @@ class CreateReservationScreen extends Component {
                             mode="date"
                             placeholder="select date"
                             format="YYYY-MM-DD"
-                            minDate={this.getToday()}
+                            minDate={this.getTomorrow()}
                             maxDate="2025-06-01"
                             confirmBtnText="Confirm"
                             cancelBtnText="Cancel"
