@@ -32,6 +32,19 @@ class CreateReservationScreen extends Component {
 
     componentWillMount() {
         this.reset();
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    name: {
+                        ...prevState.controls.name,
+                        value: this.props.name,
+                        valid: validate(this.props.name, prevState.controls.name.validationRules),
+                        touched: true
+                    }
+                }
+            };
+        })
     }
 
     reset = () => {
