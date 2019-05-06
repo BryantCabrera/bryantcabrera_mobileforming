@@ -78,7 +78,7 @@ class ReservationInfo extends Component {
                     </MapView>
                 </View>
             </View>
-        )
+        );
     }
 }
 

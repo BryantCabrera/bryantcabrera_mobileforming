@@ -4,18 +4,18 @@ import { createReservation, reservationsQuery } from '../../queries/queries';
 import {
     View,
     Text,
-    TextInput,
     Button,
     Picker,
     StyleSheet,
     ScrollView,
-    Image,
-    ActivityIndicator
+    ActivityIndicator,
+    Dimensions
 } from 'react-native';
+import MapView from "react-native-maps";
 import MainText from "../../components/UI/MainText/MainText";
 import HeadingText from "../../components/UI/HeadingText/HeadingText";
 import ReservationInput from "../../components/ReservationInput/ReservationInput";
-import DatePicker from 'react-native-datepicker'
+import DatePicker from 'react-native-datepicker';
 import validate from "../../utility/validation";
 
 class CreateReservationScreen extends Component {
@@ -32,8 +32,6 @@ class CreateReservationScreen extends Component {
 
     componentWillMount() {
         this.reset();
-
-        console.log(this.props, ' this is props.data.reservations.');
     }
 
     reset = () => {
@@ -206,8 +204,45 @@ class CreateReservationScreen extends Component {
             submitButton = <ActivityIndicator />;
         }
 
+        let image = '';
+        const location = {
+            latitude: 0,
+            longitude: 0
+        };
+
+        switch (this.state.controls.hotelName.value) {
+            case 'DoubleTree, Downtown Los Angeles':
+                image = 'https://i.imgur.com/qvz4Ms0.jpg';
+                location.latitude = 34.0504;
+                location.longitude = -118.2428;
+                break;
+            case 'Hilton Checkers, Los Angeles':
+                image = 'https://i.imgur.com/BbX7IA0.jpg';
+                location.latitude = 34.049810;
+                location.longitude = -118.255082;
+                break;
+            case 'DoubleTree, West Los Angeles':
+                image = 'https://i.imgur.com/l4Y28vt.jpg';
+                location.latitude = 33.983803;
+                location.longitude = -118.396515;
+                break;
+            case 'Hilton, LAX':
+                image = 'https://i.imgur.com/3wqsQxA.jpg';
+                location.latitude = 33.946461;
+                location.longitude = -118.381616;
+                break;
+            case 'Hampton Inn & Suites, Hollywood':
+                image = 'https://i.imgur.com/00swvth.jpg';
+                location.latitude = 34.092073;
+                location.longitude = -118.327262;
+                break;
+            default:
+                image = 'https://i.imgur.com/BZMZhmG.png';
+                location.latitude = 33.996907;
+                location.longitude = -118.307448;
+        }
+
         return (
-            
             <ScrollView>
                 <View style={styles.container}>
                     <MainText>
@@ -219,18 +254,23 @@ class CreateReservationScreen extends Component {
                         onChangeText={(value) => this.inputChangedHandler(value, 'name')}
                     />
 
-                    {/* <View style={styles.placeDetailContainer}>
-                        <View style={styles.subContainer}>
-                            <Image
-                                source={{ uri: image }}
-                                style={styles.placeImage}
-                            />
-                        </View>
-                        <View style={styles.subContainer}>
-                            
-                        </View>
-                    </View> */}
-                    
+                    <MapView
+                        initialRegion={{
+                            latitude: location.latitude,
+                            longitude: location.longitude,
+                            latitudeDelta: 0.0122,
+                            longitudeDelta:
+                                Dimensions.get("window").width /
+                                Dimensions.get("window").height *
+                                0.0122,
+                            zoom: 1
+                        }}
+                        style={styles.map}
+                    >
+                        {/* Doesn't need to be conditional because there will be no case where we'll try to render this without having the marker */}
+                        <MapView.Marker coordinate={location} />
+                    </MapView>
+
                     <Picker
                         selectedValue={this.state.controls.hotelName.value}
                         style={styles.hotelPicker}
@@ -304,6 +344,16 @@ class CreateReservationScreen extends Component {
                         />
                     </View>
 
+                    {/* <View style={styles.placeDetailContainer}>
+                        <View style={styles.subContainer}>
+                            <Image
+                                source={{ uri: image }}
+                                style={styles.placeImage}
+                            />
+                        </View>
+                        
+                    </View> */}
+
                     <View style={styles.button}>
                         {submitButton}
                     </View>
@@ -315,7 +365,7 @@ class CreateReservationScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: "100%",
         alignItems: "center"
     },
     placeholder: {
@@ -332,9 +382,9 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "100%"
     },
-    placeDetailContainer: {
-        flex: 2
-    },
+    // placeDetailContainer: {
+    //     flex: 2
+    // },
     hotelPicker: {
         height: 200,
         width: "95%",
@@ -352,6 +402,15 @@ const styles = StyleSheet.create({
     },
     datePickerText: {
         fontWeight: "800"
+    },
+    placeImage: {
+        width: "100%",
+        // want to make sure the image doesn't underlap the map
+        height: "100%"
+    },
+    map: {
+        width: 200,
+        height: 200
     }
 });
 
