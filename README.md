@@ -18,6 +18,8 @@ This is a coding project for mobileforming built by Bryant Cabrera.
     4. react-native-datepicker
     5. react-native-vector-icons
     6. react-native-maps
+    7. JSX
+        1. I opted not to use TypeScript or Flow as I am more comfortable with vanilla JSX and JavaScript syntax
 
 > Back-End
 
@@ -31,7 +33,7 @@ This is a coding project for mobileforming built by Bryant Cabrera.
         3. Jest is an assertion library.
         4. Jest allows for the creation of mock functions.
         5. Enzyme is just a library.
-        6. Enzyme can render a react component into a document to simulate an event.
+        6. Enzyme can render a react component into a document to simulate an event.  However, it requires an adapter to load an emulated DOM.
 
 > Authentication
     1. Because there wasn't a sreateUser mutation in the GraphQL backend, I mimicked authentication with front-end validation.  
