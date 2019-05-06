@@ -69,8 +69,7 @@ class ReservationInfo extends Component {
                             longitudeDelta:
                                 Dimensions.get("window").width /
                                 Dimensions.get("window").height *
-                                0.0122,
-                            zoom: 1
+                                0.0122
                         }}
                         style={styles.map}
                     >
