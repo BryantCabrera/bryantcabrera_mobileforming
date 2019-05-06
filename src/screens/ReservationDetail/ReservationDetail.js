@@ -59,6 +59,8 @@ class ReservationDetailScreen extends Component {
             }
         });
 
+        alert('Reservation Successfully Deleted');
+
         // Removes the current page from the stack, hence "navigating back"
         this.props.navigator.pop();
 
