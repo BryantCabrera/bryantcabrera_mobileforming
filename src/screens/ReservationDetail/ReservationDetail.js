@@ -47,12 +47,12 @@ class ReservationDetailScreen extends Component {
 
                     // Adds our comment from the mutation to the end.
                     const newData = currentData.reservations.filter( reservation => reservation.id !== id);
-                    console.log(newData, 'this is updated data from deleteRevervation');
+                    console.log(newData, 'this is updated data from deleteReservation');
 
                     // Writes our data back to the cache.
                     // Takes in 2 arguments type of data, and the data we write to the query
                     store.writeQuery({ query: reservationsQuery, data: {reservations: newData} });
-                    console.log(store, ' this is store from CreateRevervation');
+                    console.log(store, ' this is store from CreateRevervation.  Key into store.data.data');
                 } catch (error) {
                     console.log(error, 'Not updating store - Reservations not loaded yet');
                 }

@@ -31,7 +31,7 @@ export const reservationsQuery = gql`
 
 export const usersReservationsQuery = gql`
     query reservations($name: String!) {
-        reservations(where: { name_contains: $name }) {
+        reservations(where: { name_contains: $name }, orderBy: arrivalDate_ASC) {
             id
             name
             hotelName

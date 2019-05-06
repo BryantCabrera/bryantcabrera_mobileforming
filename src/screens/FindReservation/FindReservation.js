@@ -28,8 +28,21 @@ class FindReservationScreen extends Component {
         // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
     }
 
-    componentWillMount() {
-        
+    onNavigatorEvent = event => {
+        if (event.type === "ScreenChangedEvent") {
+            if (event.id === "willAppear") {
+                console.log(store, ' store from FindReservation');
+            }
+        }
+
+        // these types are ids defined in startMainTabs.js leftButtons property
+        if (event.type === "NavBarButtonPress") {
+            if (event.id === "sideDrawerToggle") {
+                this.props.navigator.toggleDrawer({
+                    side: "left"
+                });
+            }
+        }
     }
 
     itemSelectedHandler = id => {
@@ -108,6 +121,8 @@ class FindReservationScreen extends Component {
                 >
                     <ReservationsList
                         reservations={this.props.data.reservations}
+                        // reservations={this.state.reservations}
+                        // reservations={store.data.data.filter(reservation => reservation.name.includes(this.props.name))}
                         onItemSelected={this.itemSelectedHandler}
                     />
                 </Animated.View>
