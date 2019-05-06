@@ -5,7 +5,7 @@ import {
     StyleSheet,
     Dimensions
 } from 'react-native';
-import MapView from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
 class ReservationInfo extends Component {
     state = {
@@ -61,6 +61,7 @@ class ReservationInfo extends Component {
                 </View>
                 <View style={styles.subContainer}>
                     <MapView
+                        provider={PROVIDER_GOOGLE}
                         initialRegion={{
                             latitude: location.latitude,
                             longitude: location.longitude,

@@ -11,7 +11,7 @@ import {
     ActivityIndicator,
     Dimensions
 } from 'react-native';
-import MapView from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import MainText from "../../components/UI/MainText/MainText";
 import HeadingText from "../../components/UI/HeadingText/HeadingText";
 import ReservationInput from "../../components/ReservationInput/ReservationInput";
@@ -103,6 +103,18 @@ class CreateReservationScreen extends Component {
                     }
                 }
             };
+        });
+
+        this.map.animateToRegion({
+            // the following overwrites the latitude and longitude
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+            latitudeDelta: 0.0122,
+            // calculates aspect ratio of our device dynamically
+            longitudeDelta:
+                Dimensions.get("window").width /
+                Dimensions.get("window").height *
+                0.0122
         });
     };
 
@@ -255,6 +267,7 @@ class CreateReservationScreen extends Component {
                     />
 
                     <MapView
+                        provider={PROVIDER_GOOGLE}
                         initialRegion={{
                             latitude: location.latitude,
                             longitude: location.longitude,
