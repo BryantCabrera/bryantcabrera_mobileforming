@@ -104,18 +104,6 @@ class CreateReservationScreen extends Component {
                 }
             };
         });
-
-        this.map.animateToRegion({
-            // the following overwrites the latitude and longitude
-            latitude: coords.latitude,
-            longitude: coords.longitude,
-            latitudeDelta: 0.0122,
-            // calculates aspect ratio of our device dynamically
-            longitudeDelta:
-                Dimensions.get("window").width /
-                Dimensions.get("window").height *
-                0.0122
-        });
     };
 
     getToday = () => {
@@ -275,8 +263,16 @@ class CreateReservationScreen extends Component {
                             longitudeDelta:
                                 Dimensions.get("window").width /
                                 Dimensions.get("window").height *
-                                0.0122,
-                            zoom: 1
+                                0.0122
+                        }}
+                        region={{
+                            latitude: location.latitude,
+                            longitude: location.longitude,
+                            latitudeDelta: 0.0122,
+                            longitudeDelta:
+                                Dimensions.get("window").width /
+                                Dimensions.get("window").height *
+                                0.0122
                         }}
                         style={styles.map}
                     >
