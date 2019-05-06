@@ -23,7 +23,7 @@ Navigation.registerComponent(
 );
 Navigation.registerComponent(
     "bryant-mobileforming.ReservationDetailScreen",
-    () => ReservationDetailScreen
+    () => apolloHOC(ReservationDetailScreen)
 );
 Navigation.registerComponent(
     "bryant-mobileforming.SideDrawer",

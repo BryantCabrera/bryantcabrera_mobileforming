@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { graphql, Query } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import { usersReservationsQuery } from '../../queries/queries';
 import {
     View,

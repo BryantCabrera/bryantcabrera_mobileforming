@@ -40,3 +40,11 @@ export const usersReservationsQuery = gql`
         }
     }
 `
+
+export const deleteReservation = gql`
+    mutation deleteReservation($id: ID) {
+        deleteReservation(where: { id: $id }) {
+            id
+        }
+    }
+`

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { graphql, compose } from 'react-apollo';
+import { deleteReservation, reservationsQuery } from '../../queries/queries';
 import {
     View,
     Text,
@@ -30,8 +32,32 @@ class ReservationDetailScreen extends Component {
         });
     };
 
-    placeDeletedHandler = () => {
-        // this.props.onDeletePlace(this.props.selectedPlace.key);
+    placeDeletedHandler = (id) => {
+        // Deletes reservation from GraphQL backend and attempts to delete it from store
+        this.props.mutate({
+            // this input is defined in the const imported from queries and used at the bottom of this file
+            // if the output name is the same as the variable name, just pass it into destructured component, and it will make the new object for us with appropriate keys
+            variables: { id: id },
+            // the store is the behind the scenes cache, global state of our application that makes state available to all components
+            update: (store, { data: { deleteReservation } }) => {
+                try {
+                    // Reads the data from our cache for this query.
+                    const currentData = store.readQuery({ query: reservationsQuery });
+                    console.log(currentData, 'this is data from Reservations Query');
+
+                    // Adds our comment from the mutation to the end.
+                    const newData = currentData.reservations.filter( reservation => reservation.id !== id);
+                    console.log(newData, 'this is updated data from deleteRevervation');
+
+                    // Writes our data back to the cache.
+                    // Takes in 2 arguments type of data, and the data we write to the query
+                    store.writeQuery({ query: reservationsQuery, data: {reservations: newData} });
+                    console.log(store, ' this is store from CreateRevervation');
+                } catch (error) {
+                    console.log(error, 'Not updating store - Reservations not loaded yet');
+                }
+            }
+        });
 
         // Removes the current page from the stack, hence "navigating back"
         this.props.navigator.pop();
@@ -63,7 +89,7 @@ class ReservationDetailScreen extends Component {
                             Departure Date: {this.props.selectedReservation.departureDate}
                         </Text>
 
-                        <TouchableOpacity onPress={this.placeDeletedHandler}>
+                        <TouchableOpacity onPress={() => this.placeDeletedHandler(this.props.selectedReservation.id)}>
                             <View style={styles.deleteButton}>
                                 <Icon
                                     size={30}
@@ -118,4 +144,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ReservationDetailScreen;
+export default compose(
+    graphql(reservationsQuery),
+    graphql(deleteReservation)
+)(ReservationDetailScreen);

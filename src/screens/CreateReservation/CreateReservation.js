@@ -361,16 +361,6 @@ class CreateReservationScreen extends Component {
                         />
                     </View>
 
-                    {/* <View style={styles.placeDetailContainer}>
-                        <View style={styles.subContainer}>
-                            <Image
-                                source={{ uri: image }}
-                                style={styles.placeImage}
-                            />
-                        </View>
-                        
-                    </View> */}
-
                     <View style={styles.button}>
                         {submitButton}
                     </View>
@@ -431,27 +421,7 @@ const styles = StyleSheet.create({
     }
 });
 
-// const CreateReservationWithMutation = graphql(createReservation)(CreateReservationScreen);
-
-// export default CreateReservationWithMutation;
-
 export default compose(
     graphql(reservationsQuery),
     graphql(createReservation)
 )(CreateReservationScreen);
-
-
-// const cache = new InMemoryCache();
-// const link = new HttpLink({
-//     uri: 'https://us1.prisma.sh/public-luckox-377/reservation-graphql-backend/dev'
-// })
-// const client = new ApolloClient({
-//     cache,
-//     link
-// })
-
-// export default (
-//     <ApolloProvider client={client}>
-//         {CreateReservationWithMutation}
-//     </ApolloProvider>
-// );
