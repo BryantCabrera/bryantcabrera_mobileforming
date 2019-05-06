@@ -25,10 +25,13 @@ This is a coding project for mobileforming built by Bryant Cabrera.
 
 > Testing
 
-    1. Jest
-        1. I chose to use Zest because of it's realtime update feature.  
-        2. It allows for selective testing, namely running tests that have failed previously.
-        3. 
+    1. Jest/Enzyme
+        1. I chose to use Jest because of it's realtime update feature.  
+        2. Jest allows for selective testing, namely running tests that have failed previously.
+        3. Jest is an assertion library.
+        4. Jest allows for the creation of mock functions.
+        5. Enzyme is just a library.
+        6. Enzyme can render a react component into a document to simulate an event.
 
 > Authentication
     1. Because there wasn't a sreateUser mutation in the GraphQL backend, I mimicked authentication with front-end validation.  
