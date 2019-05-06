@@ -148,10 +148,12 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject
     },
     deleteButton: {
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 50
     },
     subContainer: {
-        flex: 1
+        flex: 1,
+        justifyContent: "space-evenly"
     }
 });
 

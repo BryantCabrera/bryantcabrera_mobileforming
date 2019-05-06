@@ -121,7 +121,7 @@ class FindReservationScreen extends Component {
             >
                 <TouchableOpacity onPress={this.reservationsSearchHandler}>
                     <View style={styles.searchButton}>
-                        <Text style={styles.searchButtonText}>Find Places</Text>
+                        <Text style={styles.searchButtonText}>Your Reservations</Text>
                     </View>
                 </TouchableOpacity>
             </Animated.View>
